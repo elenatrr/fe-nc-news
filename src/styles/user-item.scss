@@ -1,0 +1,40 @@
+@import "./common.scss";
+
+.user {
+  cursor: pointer;
+  @include flex-centered;
+  flex-direction: column;
+  flex: 0 0 160px;
+  gap: 4px;
+  border: 2px solid #5c715e;
+  background-color: #b6cdbd;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 2px 6px #5c715e;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+  margin: 6px;
+
+  &:hover {
+    background-color: #ddeedf;
+  }
+
+  &:active, &_active {
+    background-color: #ddeedf;
+    box-shadow: 1px 2px #5c715e;
+    transform: translate(1px, 4px);
+  }
+
+  &__image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 50%;
+    border: 2px solid #5c715e;
+    background-color: #fff;
+  }
+
+  &__username {
+    font-weight: 700;
+  }
+}

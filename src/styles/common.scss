@@ -1,0 +1,43 @@
+@import './media-queries.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+input, button, textarea, select, a {
+  font: inherit;
+  color: inherit;
+}
+
+body {
+  background-color: #f2f9f1;
+}
+
+@mixin flex-centered(
+  $flex-direction: row,
+  $justify-content: center,
+  $align-items: center,
+) {
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}

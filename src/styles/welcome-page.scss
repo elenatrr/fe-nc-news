@@ -1,0 +1,66 @@
+@import "./common.scss";
+
+.welcome {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+
+  &__btn {
+    display: inline-block;
+    border: none;
+    background-color: #ddeedf;
+    color: #b6cdbd;
+    text-transform: uppercase;
+    padding: 16px 20px;
+    border-radius: 12px;
+    pointer-events: none;
+    transition: all 0.3s;
+
+    &_active {
+      pointer-events: auto;
+      background-color: #c84771;
+      color: #fff;
+
+      &:hover {
+        background-color: #b61a50;
+      }
+    }
+  }
+
+  &__title, &__subtitle {
+    text-transform: capitalize;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    margin-bottom: 12px;
+  }
+
+  &__info {
+    text-align: left;
+    margin-bottom: 24px;
+  }
+
+  &__span {
+    font-style: italic;
+
+    &_blue {
+      color: #668ba4;
+    }
+
+    &_green {
+      color: #5da375;
+    }
+
+    &_red {
+      color: #e46161;
+    }
+
+    &_pink {
+      color: #c84771;
+    }
+  }
+}

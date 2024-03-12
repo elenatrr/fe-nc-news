@@ -1,0 +1,19 @@
+@import "./common.scss";
+
+.app {
+  @include flex-centered($justify-content: flex-start);
+  flex-direction: column;
+  padding: 16px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #233142;
+  min-height: 100vh;
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  @include flex-centered;
+  flex: 1 1 auto;
+  flex-direction: column;
+}

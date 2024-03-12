@@ -1,0 +1,48 @@
+@import "./common.scss";
+
+.users {
+  display: flex;
+  align-items: stretch;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  max-width: 172px;
+}
+
+.user-carousel {
+  @include flex-centered;
+  gap: 4px;
+  margin-bottom: 32px;
+
+  &__btn {
+    border: none;
+    width: 40px;
+    height: 60px;
+    position: relative;
+    bottom: 16px;
+    transition: all 0.1s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &_next {
+      background: center/contain no-repeat url('https://i.gstatvb.com/3b7d61125c904336873d819ece67f76e1710237994.rng.png');
+    }
+
+    &_prev {
+      background: center/contain no-repeat url('https://i.gstatvb.com/28084a2cd55709f0947503dba4c57e0b1710238013.rng.png');
+    }
+  }
+}
+
+@media #{$phone-media-query} {
+  .users {
+    max-width: 344px;
+  }
+}
+
+@media #{$tablet-media-query} {
+  .users {
+    max-width: 516px;
+  }
+}

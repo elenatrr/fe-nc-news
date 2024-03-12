@@ -11,7 +11,13 @@ export const fetchUsers = () => {
 };
 
 export const fetchArticles = (p) => {
-  return newsApi.get("/articles", { params: { p: p } }).then((response) => {
+  return newsApi.get("/articles", { params: { p } }).then((response) => {
     return response.data;
+  });
+};
+
+export const fetchArticle = (articleId) => {
+  return newsApi.get(`/articles/${articleId}`).then((response) => {
+    return response.data.article;
   });
 };

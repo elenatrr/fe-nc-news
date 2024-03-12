@@ -3,6 +3,7 @@ import { fetchArticles } from '../../api';
 import Loader from './Loader';
 import ArticleItem from './ArticleItem'
 import "../styles/article-list.scss"
+import { Link } from 'react-router-dom';
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([])
@@ -14,7 +15,6 @@ const ArticleList = () => {
   const isLoadMoreShown = !isLoaderShown && pageNumber * defaultLimit < articlesTotalCount.current
 
   const nextPage = () => {
-    console.dir(window);
     setPageNumber((currentPage) => currentPage + 1)
   }
 
@@ -36,7 +36,15 @@ const ArticleList = () => {
     <div className='articles'>
       <div className='articles__list'>
         {articles.map((article) => {
-          return <ArticleItem key={article.article_id} article={article} />
+          return (
+            <Link
+              className="articles__link"
+              key={article.article_id}
+              to={`/articles/${article.article_id}`}
+            >
+              <ArticleItem article={article} isArticlePreview={true} />
+            </Link>
+          )
         })}
       </div>
       {isLoadMoreShown && <button className="articles__btn" onClick={() => { nextPage() }}>Load More</button>}

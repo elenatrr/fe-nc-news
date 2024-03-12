@@ -1,0 +1,97 @@
+@import "./common.scss";
+
+.article {
+  cursor: pointer;
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #ddeedf;
+  border: 2px solid #5c715e;
+  color: #5b6065;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.01);
+    border: 2px solid #c84771;
+    background-color: #f0ece2; 
+  }
+
+  &__top {
+    @include flex-centered($justify-content: space-between);
+    margin-bottom: 12px;
+  }
+
+  &__main {
+    flex: 1 1 auto;
+    align-self: center;
+    margin-bottom: 4px;
+  }
+
+  &__bottom {
+    @include flex-centered($justify-content: space-between);
+  }
+
+  &__reactions {
+    margin: -4px 0 4px;
+  }
+
+  &__comments {
+    margin-right: 20px;
+
+    &::before {
+      background: center/contain no-repeat url('https://i.gstatvb.com/4464558029fef2a55dc465650fd4029d1710232059.rng.svg');
+    }
+  }
+
+  &__votes::before {
+    background: center/contain no-repeat url('https://i.gstatvb.com/4f5339859455367412216b317c7c234e1710231794.rng.svg');
+  }
+
+  &__comments, &__votes {
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      position: relative;
+      top: 6px;
+      margin-right: 4px;
+    }
+  }
+
+  &__title {
+    color: #233142;
+    margin-bottom: 12px;
+  }
+
+  &__image {
+    border-radius: 12px;
+  }
+
+  &__topic::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #c84771;
+    margin-right: 6px;
+  }
+}
+
+@media #{$phone-media-query} {
+
+  .article {
+    flex: 1 1 45%;
+  }
+}
+
+@media #{$tablet-media-query} {
+  
+  .article {
+    flex: 1 1 30%;
+  }
+}

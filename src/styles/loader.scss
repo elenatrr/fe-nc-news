@@ -1,0 +1,26 @@
+@import "./common.scss";
+
+.loader {
+  @include flex-centered;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  &__animation {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    border: 5px dotted #b6cdbd;
+    border-radius: 50%;
+    position: relative;
+    animation: rotation 2s linear infinite;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 

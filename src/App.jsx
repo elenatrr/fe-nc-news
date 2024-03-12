@@ -6,6 +6,7 @@ import ArticlesPage from './components/ArticlesPage';
 import UserProfilePage from './components/UserProfilePage';
 import PostArticlePage from './components/PostArticlePage';
 import Header from './components/Header';
+import ArticlePage from './components/ArticlePage';
 
 function App() {
   const location = useLocation()
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/articles" element={<ArticlesPage />} />
+          <Route path="/articles/:articleId" element={<ArticlePage />} />
           <Route path="/profile" element={<UserProfilePage />} />
           <Route path="/post" element={<PostArticlePage />} />
         </Routes>

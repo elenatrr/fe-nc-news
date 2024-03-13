@@ -15,7 +15,7 @@ const WelcomePage = () => {
         <p className='welcome__info'>Northcoders News is your go-to platform for the latest in social news aggregation, content rating, and vibrant discussions. Dive into a world where information meets interaction, with articles spanning a diverse range of topics.</p>
         <h3 className='welcome__subtitle'>...but first <span className='welcome__span'>choose an account to log in:</span></h3>
         <UserList />
-        <Link to={"/articles"} className={loggedInUser ? 'welcome__btn welcome__btn_active' : 'welcome__btn'}>Log me in!</Link>
+        <Link to={"/articles"} className={loggedInUser ? 'welcome__btn welcome__btn_active' : 'welcome__btn'} onClick={(e) => !loggedInUser ? e.preventDefault() : null}>Log me in!</Link>
       </div>
     </main>
   );

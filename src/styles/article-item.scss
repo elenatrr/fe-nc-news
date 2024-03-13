@@ -46,35 +46,29 @@
   }
 
   &__bottom {
-    @include flex-centered($justify-content: space-between);
+    @include flex-centered($justify-content: space-between, $align-items: stretch);
   }
 
-  &__reactions {
-    margin: -4px 0 4px;
-  }
-
-  &__comments {
-    margin-right: 20px;
+  &__votes {
 
     &::before {
-      background: center/contain no-repeat url('https://i.gstatvb.com/4464558029fef2a55dc465650fd4029d1710232059.rng.svg');
-    }
-  }
-
-  &__votes::before {
-    background: center/contain no-repeat url('https://i.gstatvb.com/4f5339859455367412216b317c7c234e1710231794.rng.svg');
-  }
-
-  &__comments, &__votes {
-
-    &:before {
       content: '';
       display: inline-block;
       width: 24px;
       height: 24px;
       position: relative;
-      top: 6px;
+      top: 5px;
       margin-right: 4px;
+      background: center/contain no-repeat url('https://i.gstatvb.com/4f5339859455367412216b317c7c234e1710231794.rng.svg');
+    }
+
+    &_negative:before {
+      height: 22px;
+      background: center/contain no-repeat url('https://i.gstatvb.com/e03d25dd3c57eaa86c424b0ed5eff6071710262372.rng.svg');
+    }
+
+    &_active {
+      cursor: pointer;
     }
   }
 

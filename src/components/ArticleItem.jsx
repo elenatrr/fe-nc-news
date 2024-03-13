@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../styles/article-item.scss"
 import { formatDistanceToNow } from 'date-fns';
+import VoteReactions from './VoteReactions';
 
 const ArticleItem = ({ article, isArticlePreview }) => {
   const timeAgo = formatDistanceToNow(new Date(article.created_at), { addSuffix: true });
+  const [votes, setVotes] = useState(article.votes)
+  const areVotesNegative = votes < 0
 
   return (
     <div className={isArticlePreview ? 'article article_preview' : 'article article_full'}>
@@ -19,10 +22,9 @@ const ArticleItem = ({ article, isArticlePreview }) => {
       </div>
       <div className='article__bottom'>
         <span className={isArticlePreview ? 'article__topic' : 'article__topic article__topic_full'}>{article.topic}</span>
-        <div className='article__reactions'>
-          <span className='article__comments'>{article.comment_count}</span>
-          <span className='article__votes'>{article.votes}</span>
-        </div>
+        {isArticlePreview
+        ? <span className={areVotesNegative ? 'article__votes article__votes_negative' : 'article__votes'}>{article.votes}</span>
+        : <VoteReactions votes={votes} setVotes={setVotes} areVotesNegative={areVotesNegative} articleId={article.article_id}/>}
       </div>
       {!isArticlePreview &&
         <div className='article__body'>

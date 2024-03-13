@@ -24,3 +24,9 @@ export const fetchComments = async (articleId, p) => {
     .get(`/articles/${articleId}/comments`, { params: { p } });
   return response.data.comments;
 };
+
+export const patchArticle = async (articleId, inc_votes) => {
+  const response = await newsApi
+    .patch(`/articles/${articleId}`, {inc_votes});
+  return response.data.article;
+};

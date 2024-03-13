@@ -1,0 +1,51 @@
+@import './common.scss';
+
+.reactions {
+  @include flex-centered;
+
+  &__btn {
+    @include flex-centered($align-items: stretch);
+    border: 2px solid #C84771;
+    background-color: rgba(224, 221, 215, 0.33);
+    padding: 4px 8px;
+    color: #C84771;
+    min-height: 40px;
+    min-width: 48px;
+    gap: 4px;
+
+    &:hover .reactions__image {
+      transition: all 0.3s;
+      transform: scale(1.1);
+    }
+
+    &_upvote {
+      border-radius: 12px 0 0 12px;
+    }
+
+    &_downvote {
+      position: relative;
+      right: 1px;
+      border-radius: 0 12px 12px 0;
+    }
+
+    &_clicked {
+      background-color: rgba(255, 183, 199, 0.7);
+      pointer-events: none;
+
+      &:hover .reactions__image {
+        transform: none;
+      }
+    }
+  }
+
+  &__image {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  &__number {
+    font-size: 24px;
+  }
+}

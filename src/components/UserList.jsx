@@ -34,8 +34,8 @@ const UserList = () => {
   };
 
   useEffect(() => {
-    fetchUsers().then((data) => {
-      setUsers(data)
+    fetchUsers().then((users) => {
+      setUsers(users)
     })
   }, [])
 

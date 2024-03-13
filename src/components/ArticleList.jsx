@@ -47,7 +47,7 @@ const ArticleList = () => {
           )
         })}
       </div>
-      {isLoadMoreShown && <button className="articles__btn" onClick={() => { nextPage() }}>Load More</button>}
+      {areArticlesLoading ? <Loader/> : isLoadMoreShown && <button className="articles__btn" onClick={() => { nextPage() }}>Load More</button>}
     </div>
   )
 };

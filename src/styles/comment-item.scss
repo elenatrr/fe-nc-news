@@ -1,0 +1,65 @@
+@import "./common.scss";
+
+.comment {
+  padding: 16px;
+  background-color: #e0ddd756;
+  border-radius: 12px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  &__top {
+    @include flex-centered($justify-content: flex-start);
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  &__author {
+    font-weight: 700;
+  }
+
+  &__main {
+    @include flex-centered($align-items: flex-start);
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__date::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #5c715e;
+    border-radius: 50%;
+    position: relative;
+    bottom: 2px;
+    margin-right: 12px;
+  }
+
+  &__body {
+    border-left: 4px solid #e0ddd7;
+    padding-left: 12px;
+  }
+
+  &__votes {
+    cursor: pointer;
+    min-width: fit-content;
+    align-self: flex-end;
+
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      position: relative;
+      top: 4px;
+      background: center/contain no-repeat url('https://i.gstatvb.com/4f5339859455367412216b317c7c234e1710231794.rng.svg');
+      margin-left: 4px;
+    }
+
+    &_negative:after {
+      background: center/contain no-repeat url('https://i.gstatvb.com/e03d25dd3c57eaa86c424b0ed5eff6071710262372.rng.svg');
+    }
+  }
+}

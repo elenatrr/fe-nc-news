@@ -4,20 +4,24 @@ const newsApi = axios.create({
   baseURL: "https://nc-news-yolm.onrender.com/api",
 });
 
-export const fetchUsers = () => {
-  return newsApi.get("/users").then((response) => {
-    return response.data.users;
-  });
+export const fetchUsers = async () => {
+  const response = await newsApi.get("/users");
+  return response.data.users;
 };
 
-export const fetchArticles = (p) => {
-  return newsApi.get("/articles", { params: { p } }).then((response) => {
-    return response.data;
-  });
+export const fetchArticles = async (p) => {
+  const response = await newsApi.get("/articles", { params: { p } });
+  return response.data;
 };
 
-export const fetchArticle = (articleId) => {
-  return newsApi.get(`/articles/${articleId}`).then((response) => {
-    return response.data.article;
-  });
+export const fetchArticle = async (articleId) => {
+  const response = await newsApi.get(`/articles/${articleId}`);
+  return response.data.article;
+};
+
+export const fetchComments = async (articleId, p) => {
+  const response = await newsApi
+    .get(`/articles/${articleId}/comments`, { params: { p } });
+  console.log(response.data);
+  return response.data.comments;
 };

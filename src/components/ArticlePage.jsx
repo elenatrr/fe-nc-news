@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import ArticleItem from './ArticleItem';
 import { fetchArticle } from '../../api';
 import Loader from './Loader';
+import CommentList from "./CommentList"
+import '../styles/article-page.scss'
 
 const ArticlePage = () => {
   const { articleId } = useParams()
@@ -18,6 +20,7 @@ const ArticlePage = () => {
   return !article ? <Loader /> : (
     <div className='article-page'>
       <ArticleItem article={article} isArticlePreview={false} />
+      <CommentList articleId={articleId} commentCount={article?.comment_count}/>
     </div>
   );
 };

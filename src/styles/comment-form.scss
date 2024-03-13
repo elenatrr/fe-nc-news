@@ -1,0 +1,68 @@
+@import "./common.scss";
+
+.comment-form {
+  @include flex-centered($align-items: flex-start);
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  &__label {
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  &__username {
+    color: #668ba4;
+    font-style: italic;
+  }
+
+  &__textarea {
+    resize: none;
+    width: 100%;
+    padding: 16px;
+    background-color: rgba(224, 221, 215, 0.337254902);
+    border-radius: 12px;
+    border: 2px solid #e0ddd7;
+    overflow-y: hidden;
+    min-height: 100px;
+    margin-bottom: 12px;
+
+    &:focus {
+      border: 2px solid #c84771;
+      outline: none;
+    }
+
+    &::placeholder {
+      font-style: italic;
+    }
+  }
+
+  &__btn {
+    cursor: default;
+    align-self: flex-end;
+    display: inline-block;
+    border: none;
+    background-color: #c84772c0;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    border-radius: 12px;
+    transition: all 0.3s;
+    pointer-events: none;
+
+    &_active {
+      cursor: pointer;
+      background-color: #c84771;
+      color: #fff;
+      pointer-events: auto;
+
+      &:hover {
+        background-color: #b61a50;
+      }
+    }
+
+    &_submitted {
+      background-color: #b6cdbd;
+      color: #5c715e;
+    }
+  }
+}

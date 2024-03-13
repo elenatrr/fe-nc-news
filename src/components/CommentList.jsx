@@ -4,8 +4,7 @@ import CommentItem from './CommentItem';
 import Loader from './Loader';
 import "../styles/comment-list.scss"
 
-const CommentList = ({ articleId, commentCount }) => {
-  const [comments, setComments] = useState([])
+const CommentList = ({ comments, setComments, articleId, commentCount }) => {
   const [areCommentsLoading, setAreCommentsLoading] = useState(true)
   const [pageNumber, setPageNumber] = useState(1)
   const defaultLimit = 10

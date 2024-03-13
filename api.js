@@ -22,6 +22,5 @@ export const fetchArticle = async (articleId) => {
 export const fetchComments = async (articleId, p) => {
   const response = await newsApi
     .get(`/articles/${articleId}/comments`, { params: { p } });
-  console.log(response.data);
   return response.data.comments;
 };

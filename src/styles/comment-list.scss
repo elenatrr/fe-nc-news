@@ -6,8 +6,20 @@
     margin-bottom: 20px;
   }
 
-  &__title {
+  &__top {
+    @include flex-centered($justify-content: space-between);
     margin-bottom: 20px;
+  }
+
+  &__count::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: 6px;
+    margin-right: 4px;
+    background: center/contain no-repeat url('https://i.gstatvb.com/4464558029fef2a55dc465650fd4029d1710232059.rng.svg');
   }
 
   &__btn {

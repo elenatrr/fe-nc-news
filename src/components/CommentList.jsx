@@ -32,7 +32,10 @@ const CommentList = ({ articleId, commentCount }) => {
   return isLoaderShown ? <Loader/> : (
     <div className='comments'>
       <div className='comments__list'>
-        <h4 className='comments__title'>Comments</h4>
+        <div className='comments__top'>
+          <h4 className='comments__title'>{!commentCount ? 'No comments yet' : 'Comments'}</h4>
+          <span className='comments__count'>{commentCount}</span>
+        </div>
         {comments.map((comment) => {
           return <CommentItem key={comment.comment_id} comment={comment} />
         })}

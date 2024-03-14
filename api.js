@@ -9,8 +9,8 @@ export const fetchUsers = async () => {
   return response.data.users;
 };
 
-export const fetchArticles = async (p) => {
-  const response = await newsApi.get("/articles", { params: { p } });
+export const fetchArticles = async (p, topic) => {
+  const response = await newsApi.get("/articles", { params: { p, topic: topic || "" } });
   return response.data;
 };
 
@@ -41,4 +41,9 @@ export const postComment = async (articleId, username, body) => {
 
 export const deleteComment = async (commentId) => {
   await newsApi.delete(`/comments/${commentId}`);
+};
+
+export const fetchTopics = async () => {
+  const response = await newsApi.get("/topics");
+  return response.data.topics;
 };

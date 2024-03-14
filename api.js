@@ -30,3 +30,9 @@ export const patchArticle = async (articleId, inc_votes) => {
     .patch(`/articles/${articleId}`, {inc_votes});
   return response.data.article;
 };
+
+export const postComment = async (articleId, username, body) => {
+  const response = await newsApi
+    .post(`/articles/${articleId}/comments`, {username, body});
+  return response.data.comment;
+};

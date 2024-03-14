@@ -77,7 +77,7 @@
     margin-bottom: 12px;
 
     &_full {
-      font-size: 32px;
+      font-size: 28px;
     }
   }
 
@@ -109,5 +109,12 @@
     border-left: 4px solid #e0ddd7;
     padding-left: 12px;
     margin-top: 20px;
+  }
+}
+
+@media #{$phone-media-query} {
+  
+  .article__title_full {
+    font-size: 32px;
   }
 }

@@ -7,13 +7,12 @@ const CommentForm = ({ setComments, articleId }) => {
   const { loggedInUser } = useUser();
   const textareaRef = useRef(null)
   const [text, setText] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState({isSubmitting: false, isSubmitted: false})
   let submitBtnClass = "comment-form__btn"
 
-  if (isSubmitted) {
+  if (submitStatus.isSubmitted) {
     submitBtnClass = "comment-form__btn comment-form__btn_submitted"
-  } else if (!text || isSubmitting) {
+  } else if (!text || submitStatus.isSubmitting) {
     submitBtnClass = "comment-form__btn"
   } else {
     submitBtnClass = "comment-form__btn comment-form__btn_active"
@@ -28,22 +27,20 @@ const CommentForm = ({ setComments, articleId }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (!text || isSubmitting) {
+    if (!text || submitStatus.isSubmitting) {
       return
     }
 
-    setIsSubmitted(false)
-    setIsSubmitting(true)
+    setSubmitStatus({isSubmitting: true, isSubmitted: false})
     postComment(articleId, loggedInUser.username, text)
       .then((newComment) => {
         setComments((currentComments) => [newComment, ...currentComments])
       })
       .finally(() => {
         setText('')
-        setIsSubmitting(false)
-        setIsSubmitted(true)
+        setSubmitStatus({isSubmitting: false, isSubmitted: true})
         setTimeout(() => {
-          setIsSubmitted(false)
+          setSubmitStatus({isSubmitting: false, isSubmitted: false})
         }, 3000);
       })
   }
@@ -61,7 +58,7 @@ const CommentForm = ({ setComments, articleId }) => {
         placeholder='What are your thoughts?'
         onChange={handleChange}
       ></textarea>
-      <button className={submitBtnClass} type='submit'>{isSubmitting ? 'Submitting...' : isSubmitted ? 'Submitted ✔' : 'Submit'}</button>
+      <button className={submitBtnClass} type='submit'>{submitStatus.isSubmitting ? 'Submitting...' : submitStatus.isSubmitted ? 'Submitted ✔' : 'Submit'}</button>
     </form>
   );
 };

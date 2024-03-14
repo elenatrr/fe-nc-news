@@ -5,14 +5,94 @@
   background-color: #e0ddd756;
   border-radius: 12px;
 
+  &_deleted {
+    background-color: #b6cdbd;
+    color: #5c715e;
+  }
+
+  &_closed {
+    animation: fadeOut 1s ease-out forwards;
+  }
+
   &:not(:last-child) {
     margin-bottom: 20px;
   }
 
   &__top {
-    @include flex-centered($justify-content: flex-start);
-    gap: 12px;
+    @include flex-centered($justify-content: space-between);
+    gap: 4px;
     margin-bottom: 12px;
+  }
+
+  &__info {
+    @include flex-centered($justify-content: center, $align-items: flex-start);
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__delete {
+    position: relative;
+    align-self: flex-start;
+    width: 28px;
+    height: 28px;
+    border: 2px solid #c84771;
+    background-color: #e0ddd756;
+    border-radius: 8px;
+
+    &:hover, &:active {
+      background-color: rgba(255, 183, 199, 0.7);
+
+      &:before {
+        transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
+      }
+  
+      &:after {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1.2);
+      }
+    }
+
+    &::before, &::after {
+      content: '';
+      transition: transform 0.1s;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 2px;
+      height: 20px;
+      background-color: #c84771;
+    }
+
+    &:before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &:after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &_load {
+      pointer-events: none;
+      background-color: rgba(255, 183, 199, 0.7);
+
+      &:before {
+        display: inline-block;
+        transform: none;
+        top: 0;
+        left: 0;
+        width: 16px;
+        height: 16px;
+        border: 4px dotted #c84771;
+        background-color: unset;
+        border-radius: 50%;
+        position: relative;
+        animation: rotation 2s linear infinite;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
   }
 
   &__author {
@@ -61,5 +141,33 @@
     &_negative:after {
       background: center/contain no-repeat url('https://i.gstatvb.com/e03d25dd3c57eaa86c424b0ed5eff6071710262372.rng.svg');
     }
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@media #{$phone-smallest-media-query} {
+
+  .comment__info {
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
   }
 }

@@ -20,19 +20,25 @@ export const fetchArticle = async (articleId) => {
 };
 
 export const fetchComments = async (articleId, p) => {
-  const response = await newsApi
-    .get(`/articles/${articleId}/comments`, { params: { p } });
+  const response = await newsApi.get(`/articles/${articleId}/comments`, {
+    params: { p },
+  });
   return response.data.comments;
 };
 
 export const patchArticle = async (articleId, inc_votes) => {
-  const response = await newsApi
-    .patch(`/articles/${articleId}`, {inc_votes});
+  const response = await newsApi.patch(`/articles/${articleId}`, { inc_votes });
   return response.data.article;
 };
 
 export const postComment = async (articleId, username, body) => {
-  const response = await newsApi
-    .post(`/articles/${articleId}/comments`, {username, body});
+  const response = await newsApi.post(`/articles/${articleId}/comments`, {
+    username,
+    body,
+  });
   return response.data.comment;
+};
+
+export const deleteComment = async (commentId) => {
+  await newsApi.delete(`/comments/${commentId}`);
 };

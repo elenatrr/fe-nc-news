@@ -54,7 +54,7 @@ const CommentForm = ({ setComments, articleId }) => {
       <textarea
         className="comment-form__textarea"
         name="comment"
-        id="comment-text"
+        id="comment"
         maxLength={280}
         value={text}
         ref={textareaRef}

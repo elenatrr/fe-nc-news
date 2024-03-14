@@ -157,7 +157,7 @@
   }
 }
 
-@media #{$phone-smallest-media-query} {
+@media #{$phone-media-query} {
 
   .comment__info {
     justify-content: flex-start;

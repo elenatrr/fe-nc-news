@@ -20,7 +20,6 @@ const TopicList = ({ topicName, areArticlesLoading }) => {
 
   return (
     topics && <div className="topics">
-      <h4 className="topics__title">Choose a topic:</h4>
       <div className="topics__list">
         <div className={!topicName ? "topic topic_selected" : "topic"} onClick={handleClick}>
           #all

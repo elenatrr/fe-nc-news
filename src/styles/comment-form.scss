@@ -64,5 +64,10 @@
       background-color: #b6cdbd;
       color: #5c715e;
     }
+
+    &_failed {
+      background-color: rgba(255, 183, 199, 0.7);
+      color: #b61a50;
+    }
   }
 }

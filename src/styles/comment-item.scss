@@ -1,21 +1,34 @@
 @import "./common.scss";
 
 .comment {
+  position: relative;
   padding: 16px;
   background-color: #e0ddd756;
   border-radius: 12px;
+  overflow: hidden;
 
   &_deleted {
     background-color: #b6cdbd;
     color: #5c715e;
-  }
-
-  &_closed {
-    animation: fadeOut 1s ease-out forwards;
+    animation: fadeOut 1s 2s ease-out forwards;
   }
 
   &:not(:last-child) {
     margin-bottom: 20px;
+  }
+
+  &__error {
+    @include flex-centered;
+    animation: fadeOut 1s 2s ease-out forwards;
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e0ddd7;
+    color: #b61a50;
+    font-weight: 700;
   }
 
   &__top {
@@ -141,25 +154,6 @@
     &_negative:after {
       background: center/contain no-repeat url('https://i.gstatvb.com/e03d25dd3c57eaa86c424b0ed5eff6071710262372.rng.svg');
     }
-  }
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-} 
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    display: none;
   }
 }
 

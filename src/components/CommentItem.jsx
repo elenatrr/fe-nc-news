@@ -9,31 +9,36 @@ const CommentItem = ({ comment }) => {
   const areVotesNegative = comment.votes < 0
   const { loggedInUser } = useUser()
   const isAllowedToDelete = comment.author === loggedInUser.username
-  const [deleteStatus, setDeleteStatus] = useState({ isDeleting: false, isDeleted: false, isClosed: false });
+  const [deleteStatus, setDeleteStatus] = useState({ isDeleting: false, isDeleted: false, isFailed: false });
 
   const handleDelete = () => {
-    if (deleteStatus.isDeleting) {
+    if (deleteStatus.isDeleting || deleteStatus.isFailed) {
       return
     }
 
     setDeleteStatus(current => ({ ...current, isDeleting: true }))
+
     deleteComment(comment.comment_id)
       .then(() => {
-        setDeleteStatus({ isDeleting: false, isDeleted: true, isClosed: false })
+        setDeleteStatus(current => ({ ...current, isDeleting: false, isDeleted: true}))
         setTimeout(() => {
-          setDeleteStatus(current => ({ ...current, isClosed: true }))
+          setDeleteStatus(current => ({ ...current, isDeleted: true }))
         }, 3000);
       })
       .catch(() => {
-        setDeleteStatus({ ...deleteStatus, isDeleting: false });
+        setDeleteStatus(current => ({ ...current, isDeleting: false, isFailed: true}))
+        setTimeout(() => {
+          setDeleteStatus(current => ({ ...current, isFailed: false }))
+        }, 3000);
       })
   }
 
   return (deleteStatus.isDeleted
-    ? <div className={deleteStatus.isClosed ? 'comment comment_deleted comment_closed' : 'comment comment_deleted'}>
+    ? <div className='comment comment_deleted'>
       Your comment has been successfully deleted ✔
     </div>
     : <div className='comment'>
+      {deleteStatus.isFailed && <div className='comment__error'>Failed to delete comment</div>}
       <div className='comment__top'>
         <div className='comment__info'>
           <p className='comment__author'>{comment.author}</p>

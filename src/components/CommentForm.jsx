@@ -7,15 +7,20 @@ const CommentForm = ({ setComments, articleId }) => {
   const { loggedInUser } = useUser();
   const textareaRef = useRef(null)
   const [text, setText] = useState('')
-  const [submitStatus, setSubmitStatus] = useState({isSubmitting: false, isSubmitted: false})
+  const [submitStatus, setSubmitStatus] = useState({isSubmitting: false, isSubmitted: false, isFailed: false})
   let submitBtnClass = "comment-form__btn"
+  let submitBtnText = "Submit"
 
-  if (submitStatus.isSubmitted) {
-    submitBtnClass = "comment-form__btn comment-form__btn_submitted"
-  } else if (!text || submitStatus.isSubmitting) {
-    submitBtnClass = "comment-form__btn"
-  } else {
-    submitBtnClass = "comment-form__btn comment-form__btn_active"
+  if (submitStatus.isSubmitting) {
+    submitBtnText = "Submitting...";
+  } else if (submitStatus.isSubmitted) {
+    submitBtnClass += " comment-form__btn_submitted";
+    submitBtnText = "Submitted ✔";
+  } else if (submitStatus.isFailed) {
+    submitBtnClass += " comment-form__btn_failed";
+    submitBtnText = "Failed to submit";
+  } else if (text) {
+    submitBtnClass += " comment-form__btn_active";
   }
 
   const handleChange = (e) => {
@@ -27,20 +32,24 @@ const CommentForm = ({ setComments, articleId }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (!text || submitStatus.isSubmitting) {
+    if (!text || submitStatus.isSubmitting || submitStatus.isFailed) {
       return
     }
 
-    setSubmitStatus({isSubmitting: true, isSubmitted: false})
+    setSubmitStatus(current => ({ ...current, isSubmitting: true}))
+
     postComment(articleId, loggedInUser.username, text)
       .then((newComment) => {
+        setSubmitStatus(current => ({ ...current, isSubmitting: false, isSubmitted: true }))
         setComments((currentComments) => [newComment, ...currentComments])
+        setText('')
+      })
+      .catch(() => {
+        setSubmitStatus(current => ({ ...current, isSubmitting: false, isFailed: true }))
       })
       .finally(() => {
-        setText('')
-        setSubmitStatus({isSubmitting: false, isSubmitted: true})
         setTimeout(() => {
-          setSubmitStatus({isSubmitting: false, isSubmitted: false})
+          setSubmitStatus(current => ({ ...current, isSubmitted: false, isFailed: false }))
         }, 3000);
       })
   }
@@ -58,7 +67,7 @@ const CommentForm = ({ setComments, articleId }) => {
         placeholder='What are your thoughts?'
         onChange={handleChange}
       ></textarea>
-      <button className={submitBtnClass} type='submit'>{submitStatus.isSubmitting ? 'Submitting...' : submitStatus.isSubmitted ? 'Submitted ✔' : 'Submit'}</button>
+      <button className={submitBtnClass} type='submit'>{submitBtnText}</button>
     </form>
   );
 };

@@ -5,9 +5,8 @@ import Loader from "./Loader";
 import ArticleItem from "./ArticleItem";
 import "../styles/article-list.scss";
 
-const ArticleList = ({topicName}) => {
+const ArticleList = ({topicName, areArticlesLoading, setAreArticlesLoading}) => {
   const [articles, setArticles] = useState([]);
-  const [areArticlesLoading, setAreArticlesLoading] = useState(true);
   const [pageNumber, setPageNumber] = useState(1);
   const [isNonExistentTopic, setIsNonExistentTopic] = useState(false);
   const articlesTotalCount = useRef(null);
@@ -20,6 +19,9 @@ const ArticleList = ({topicName}) => {
   };
 
   const fetchAndSetArticles = async (reset = false) => {
+    if (areArticlesLoading) {
+      return
+    }
     setAreArticlesLoading(true);
     setIsNonExistentTopic(false);
 

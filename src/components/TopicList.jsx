@@ -4,7 +4,7 @@ import TopicItem from "./TopicItem";
 import { useNavigate, Link} from "react-router-dom";
 import "../styles/topic-list.scss";
 
-const TopicList = ({ topicName }) => {
+const TopicList = ({ topicName, areArticlesLoading }) => {
   const [topics, setTopics] = useState(null);
   const navigate = useNavigate();
   const handleClick = () => {
@@ -29,7 +29,7 @@ const TopicList = ({ topicName }) => {
           return <Link
             className="topics__link"
             key={topic.slug}
-            to={`/articles/${topic.slug}`}
+            to={areArticlesLoading ? "#" : `/articles/${topic.slug}`}
           >
             <TopicItem topic={topic} topicName={topicName}/>
           </Link>;

@@ -1,15 +1,15 @@
-import React, { useRef, useState } from 'react';
-import { useUser } from '../contexts/UserContext';
-import '../styles/comment-form.scss'
-import { postComment } from '../../api';
+import React, { useRef, useState } from "react";
+import { useUser } from "../contexts/UserContext";
+import "../styles/comment-form.scss";
+import { postComment } from "../../api";
 
 const CommentForm = ({ setComments, articleId }) => {
   const { loggedInUser } = useUser();
-  const textareaRef = useRef(null)
-  const [text, setText] = useState('')
-  const [submitStatus, setSubmitStatus] = useState({isSubmitting: false, isSubmitted: false, isFailed: false})
-  let submitBtnClass = "comment-form__btn"
-  let submitBtnText = "Submit"
+  const textareaRef = useRef(null);
+  const [text, setText] = useState("");
+  const [submitStatus, setSubmitStatus] = useState({isSubmitting: false, isSubmitted: false, isFailed: false});
+  let submitBtnClass = "comment-form__btn";
+  let submitBtnText = "Submit";
 
   if (submitStatus.isSubmitting) {
     submitBtnText = "Submitting...";
@@ -24,35 +24,35 @@ const CommentForm = ({ setComments, articleId }) => {
   }
 
   const handleChange = (e) => {
-    setText(e.target.value)
-    textareaRef.current.style.height = "auto"
-    textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
-  }
+    setText(e.target.value);
+    textareaRef.current.style.height = "auto";
+    textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (!text || submitStatus.isSubmitting || submitStatus.isFailed) {
-      return
+      return;
     }
 
-    setSubmitStatus(current => ({ ...current, isSubmitting: true}))
+    setSubmitStatus(current => ({ ...current, isSubmitting: true}));
 
     postComment(articleId, loggedInUser.username, text)
       .then((newComment) => {
-        setSubmitStatus(current => ({ ...current, isSubmitting: false, isSubmitted: true }))
-        setComments((currentComments) => [newComment, ...currentComments])
-        setText('')
+        setSubmitStatus(current => ({ ...current, isSubmitting: false, isSubmitted: true }));
+        setComments((currentComments) => [newComment, ...currentComments]);
+        setText("");
       })
       .catch(() => {
-        setSubmitStatus(current => ({ ...current, isSubmitting: false, isFailed: true }))
+        setSubmitStatus(current => ({ ...current, isSubmitting: false, isFailed: true }));
       })
       .finally(() => {
         setTimeout(() => {
-          setSubmitStatus(current => ({ ...current, isSubmitted: false, isFailed: false }))
+          setSubmitStatus(current => ({ ...current, isSubmitted: false, isFailed: false }));
         }, 3000);
-      })
-  }
+      });
+  };
 
   return (
     <form onSubmit={handleSubmit} className='comment-form'>

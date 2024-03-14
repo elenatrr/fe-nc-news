@@ -1,21 +1,21 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import "../styles/header.scss"
-import { useUser } from '../contexts/UserContext';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "../styles/header.scss";
+import { useUser } from "../contexts/UserContext";
 
 const Header = () => {
-  const { loggedInUser, setLoggedInUser } = useUser()
+  const { loggedInUser, setLoggedInUser } = useUser();
 
   const logout = () => {
-    setLoggedInUser(null)
-  }
+    setLoggedInUser(null);
+  };
 
   return (
     <header className='header'>
       <NavLink
         className='header__link'
         to="/articles"
-        onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }} exact="true"
+        onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); }} exact="true"
       >
         <div className='header__logo'>
           <img className="header__icon" src="https://i.gstatvb.com/881642647dc9c02da0b501199f0509491710200443.rng.svg" alt="NC News Logo" />
@@ -25,7 +25,7 @@ const Header = () => {
         <NavLink
           className='header__link'
           to="/"
-          onClick={() => { logout() }}
+          onClick={() => { logout(); }}
         >
           <div className='header__logout'></div>
         </NavLink>

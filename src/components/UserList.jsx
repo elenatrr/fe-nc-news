@@ -1,21 +1,21 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { fetchUsers } from '../../api';
-import UserItem from './UserItem';
-import "../styles/user-list.scss"
-import { useUser } from '../contexts/UserContext';
-import Loader from './Loader';
+import React, { useEffect, useState, useRef } from "react";
+import { fetchUsers } from "../../api";
+import UserItem from "./UserItem";
+import "../styles/user-list.scss";
+import { useUser } from "../contexts/UserContext";
+import Loader from "./Loader";
 
 const UserList = () => {
-  const [users, setUsers] = useState(null)
-  const { loggedInUser, setLoggedInUser } = useUser()
-  const listRef = useRef(null)
+  const [users, setUsers] = useState(null);
+  const { loggedInUser, setLoggedInUser } = useUser();
+  const listRef = useRef(null);
 
   const handleItemClick = (user) => {
-    setLoggedInUser(user)
-  }
+    setLoggedInUser(user);
+  };
 
   const scrollWidth = () => {
-    const listItemWidth = listRef.current.scrollWidth / users.length
+    const listItemWidth = listRef.current.scrollWidth / users.length;
     return listRef.current ? listItemWidth : 0;
   };
 
@@ -35,9 +35,9 @@ const UserList = () => {
 
   useEffect(() => {
     fetchUsers().then((users) => {
-      setUsers(users)
-    })
-  }, [])
+      setUsers(users);
+    });
+  }, []);
 
   return !users ? <Loader /> : (
     <div className='user-carousel'>
@@ -51,7 +51,7 @@ const UserList = () => {
               isActive={user.username === loggedInUser?.username}
               onClick={handleItemClick}
             />
-          )
+          );
         })}
       </div>
       <button className="user-carousel__btn user-carousel__btn_next" onClick={next}></button>

@@ -1,36 +1,36 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { fetchArticles } from '../../api';
-import Loader from './Loader';
-import ArticleItem from './ArticleItem'
-import "../styles/article-list.scss"
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from "react";
+import { fetchArticles } from "../../api";
+import Loader from "./Loader";
+import ArticleItem from "./ArticleItem";
+import "../styles/article-list.scss";
+import { Link } from "react-router-dom";
 
 const ArticleList = () => {
-  const [articles, setArticles] = useState([])
-  const [areArticlesLoading, setAreArticlesLoading] = useState(true)
-  const [pageNumber, setPageNumber] = useState(1)
+  const [articles, setArticles] = useState([]);
+  const [areArticlesLoading, setAreArticlesLoading] = useState(true);
+  const [pageNumber, setPageNumber] = useState(1);
   const articlesTotalCount = useRef(null);
-  const defaultLimit = 10
-  const isLoaderShown = areArticlesLoading && articles.length === 0
-  const isLoadMoreShown = !isLoaderShown && pageNumber * defaultLimit < articlesTotalCount.current
+  const defaultLimit = 10;
+  const isLoaderShown = areArticlesLoading && articles.length === 0;
+  const isLoadMoreShown = !isLoaderShown && pageNumber * defaultLimit < articlesTotalCount.current;
 
   const nextPage = () => {
-    setPageNumber((currentPage) => currentPage + 1)
-  }
+    setPageNumber((currentPage) => currentPage + 1);
+  };
 
   const loadArticles = async () => {
-    setAreArticlesLoading(true)
+    setAreArticlesLoading(true);
     fetchArticles(pageNumber)
       .then(({ articles, total_count }) => {
-        articlesTotalCount.current = total_count
-        setArticles((currentList) => [...currentList, ...articles])
-        setAreArticlesLoading(false)
-      })
-  }
+        articlesTotalCount.current = total_count;
+        setArticles((currentList) => [...currentList, ...articles]);
+        setAreArticlesLoading(false);
+      });
+  };
 
   useEffect(() => {
-    loadArticles()
-  }, [pageNumber])
+    loadArticles();
+  }, [pageNumber]);
 
   return isLoaderShown ? <Loader /> : (
     <div className='articles'>
@@ -44,12 +44,12 @@ const ArticleList = () => {
             >
               <ArticleItem article={article} isArticlePreview={true} />
             </Link>
-          )
+          );
         })}
       </div>
-      {areArticlesLoading ? <Loader/> : isLoadMoreShown && <button className="articles__btn" onClick={() => { nextPage() }}>Load More</button>}
+      {areArticlesLoading ? <Loader/> : isLoadMoreShown && <button className="articles__btn" onClick={() => { nextPage(); }}>Load More</button>}
     </div>
-  )
+  );
 };
 
 export default ArticleList;

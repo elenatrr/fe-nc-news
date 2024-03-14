@@ -1,33 +1,33 @@
-import React, { useState } from 'react';
-import '../styles/vote-reactions.scss'
-import { patchArticle } from '../../api';
+import React, { useState } from "react";
+import "../styles/vote-reactions.scss";
+import { patchArticle } from "../../api";
 
 const VoteReactions = ({ votes, setVotes, areVotesNegative, articleId }) => {
-  const [userVote, setUserVote] = useState(0)
-  const [isVoting, setIsVoting] = useState(false)
+  const [userVote, setUserVote] = useState(0);
+  const [isVoting, setIsVoting] = useState(false);
 
   const handleVote = (voteClicked) => {
     if (voteClicked === userVote || isVoting) {
-      return
+      return;
     }
 
     const voteChange = voteClicked - userVote;
 
-    setIsVoting(true)
-    setUserVote(voteClicked)
+    setIsVoting(true);
+    setUserVote(voteClicked);
     setVotes((currentVotes) => currentVotes + voteChange);
 
     patchArticle(articleId, voteChange)
       .then(() => {
-        setIsVoting(false)
-      })
-  }
+        setIsVoting(false);
+      });
+  };
 
   return (
     <div className='reactions'>
       <button
         disabled={isVoting}
-        className={userVote === 1 ? 'reactions__btn reactions__btn_upvote reactions__btn_clicked' : 'reactions__btn reactions__btn_upvote'}
+        className={userVote === 1 ? "reactions__btn reactions__btn_upvote reactions__btn_clicked" : "reactions__btn reactions__btn_upvote"}
         onClick={() => handleVote(1)}
       >
         <img className="reactions__image" src="https://i.gstatvb.com/4eb3123b4c6d3bb0794f36fb9964c5261710336800.rng.png" alt="Pink heart" />
@@ -35,7 +35,7 @@ const VoteReactions = ({ votes, setVotes, areVotesNegative, articleId }) => {
       </button>
       <button
         disabled={isVoting}
-        className={userVote === -1 ? 'reactions__btn reactions__btn_downvote reactions__btn_clicked' : 'reactions__btn reactions__btn_downvote'}
+        className={userVote === -1 ? "reactions__btn reactions__btn_downvote reactions__btn_clicked" : "reactions__btn reactions__btn_downvote"}
         onClick={() => handleVote(-1)}
       >
         <span className='reactions__number'>{areVotesNegative ? votes : null}</span>

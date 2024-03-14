@@ -1,9 +1,9 @@
 import React from "react";
 
-const TopicItem = () => {
+const TopicItem = ({ topic, topicName }) => {
   return (
-    <div>
-      topic TopicItem
+    <div className={topicName === topic.slug ? "topic topic_selected" : "topic"}>
+      #{topic.slug}
     </div>
   );
 };

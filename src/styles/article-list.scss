@@ -40,7 +40,7 @@
   }
 }
 
-@media #{$tablet-media-query} {
+@media #{$desktop-smallest-media-query} {
   
   .articles__link {
     flex: 1 1 30%;

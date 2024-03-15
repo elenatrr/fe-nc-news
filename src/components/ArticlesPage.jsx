@@ -15,7 +15,7 @@ const ArticlesPage = () => {
   const [articles, setArticles] = useState([]);
   const [isNonExistentTopic, setIsNonExistentTopic] = useState(false);
   const isLoaderShown = areArticlesLoading && articles.length === 0;
-  const errorMsg = `Sorry, the selected topic "${topicName}" does not exist.`
+  const errorMsg = `Sorry, the selected topic "${topicName}" does not exist.`;
 
   return ( isNonExistentTopic
     ? <NotFound errorMsg={errorMsg} setIsNonExistentTopic={setIsNonExistentTopic}/>

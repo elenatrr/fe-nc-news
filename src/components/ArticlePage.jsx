@@ -13,7 +13,7 @@ const ArticlePage = () => {
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState([]);
   const [isNonExistentId, setIsNonExistentId] = useState(false);
-  const errorMsg = `Sorry, the selected article "${articleId}" does not exist.`
+  const errorMsg = `Sorry, the selected article "${articleId}" does not exist.`;
 
   useEffect(() => {
     setIsNonExistentId(false);
@@ -34,7 +34,7 @@ const ArticlePage = () => {
     : isNonExistentId
       ? <NotFound errorMsg={errorMsg}/>
       :
-       (
+      (
         <div className='article-page'>
           <ArticleItem article={article} isArticlePreview={false} />
           <CommentForm setComments={setComments} articleId={articleId} />

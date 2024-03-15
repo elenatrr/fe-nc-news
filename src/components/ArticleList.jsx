@@ -58,24 +58,24 @@ const ArticleList = ({
 
   return isLoaderShown
     ? <Loader />
-      : (
-        <div className='articles'>
-          <div className='articles__list'>
-            {articles.map((article) => {
-              return (
-                <Link
-                  className="articles__link"
-                  key={article.article_id}
-                  to={`/article/${article.article_id}`}
-                >
-                  <ArticleItem article={article} isArticlePreview={true} />
-                </Link>
-              );
-            })}
-          </div>
-          {areArticlesLoading ? <Loader /> : isLoadMoreShown && <button className="articles__btn" onClick={() => { loadMoreArticles(); }}>Load More</button>}
+    : (
+      <div className='articles'>
+        <div className='articles__list'>
+          {articles.map((article) => {
+            return (
+              <Link
+                className="articles__link"
+                key={article.article_id}
+                to={`/article/${article.article_id}`}
+              >
+                <ArticleItem article={article} isArticlePreview={true} />
+              </Link>
+            );
+          })}
         </div>
-      );
+        {areArticlesLoading ? <Loader /> : isLoadMoreShown && <button className="articles__btn" onClick={() => { loadMoreArticles(); }}>Load More</button>}
+      </div>
+    );
 };
 
 export default ArticleList;

@@ -5,7 +5,7 @@ import Loader from "./Loader";
 import ArticleItem from "./ArticleItem";
 import "../styles/article-list.scss";
 
-const ArticleList = ({topicName, areArticlesLoading, setAreArticlesLoading}) => {
+const ArticleList = ({topicName, areArticlesLoading, setAreArticlesLoading, order, sortBy}) => {
   const [articles, setArticles] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [isNonExistentTopic, setIsNonExistentTopic] = useState(false);
@@ -20,13 +20,13 @@ const ArticleList = ({topicName, areArticlesLoading, setAreArticlesLoading}) => 
 
   const fetchAndSetArticles = async (reset = false) => {
     if (areArticlesLoading) {
-      return
+      return;
     }
     setAreArticlesLoading(true);
     setIsNonExistentTopic(false);
 
     try {
-      const { articles, total_count } = await fetchArticles(reset ? 1 : pageNumber, topicName ? topicName : "");
+      const { articles, total_count } = await fetchArticles(reset ? 1 : pageNumber, topicName || "", order || "", sortBy || "");
       articlesTotalCount.current = total_count;
       setArticles(currentList => reset ? articles : [...currentList, ...articles]);
     } catch (error) {
@@ -41,7 +41,7 @@ const ArticleList = ({topicName, areArticlesLoading, setAreArticlesLoading}) => 
   useEffect( () => {
     setPageNumber(1);
     fetchAndSetArticles(true);
-  }, [topicName]);
+  }, [topicName, order, sortBy]);
 
   useEffect(() => {
     if (pageNumber > 1) {
@@ -52,7 +52,7 @@ const ArticleList = ({topicName, areArticlesLoading, setAreArticlesLoading}) => 
   return isLoaderShown
     ? <Loader />
     : isNonExistentTopic
-      ? <div className="wrapper">Sorry, the selected topic &quot;{topicName}&quot; does not exist. Please choose one from the list above!</div>
+      ? <div className="error-msg">Sorry, the selected topic &quot;{topicName}&quot; does not exist. Please choose one from the list above!</div>
       :(
         <div className='articles'>
           <div className='articles__list'>

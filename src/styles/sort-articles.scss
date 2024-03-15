@@ -1,0 +1,23 @@
+@import "./common.scss";
+
+.sort {
+  @include flex-centered($align-items: flex-end);
+  align-self: flex-end;
+  gap: 16px;
+  font-size: 20px;
+  color: #605f5c;
+
+  &__item {
+    cursor: pointer;
+    padding-bottom: 4px;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #555452d0;
+    }
+
+    &_clicked {
+      border-bottom: 4px solid #e0ddd7;
+    }
+  }
+}

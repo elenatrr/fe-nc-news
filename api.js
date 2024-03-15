@@ -9,8 +9,8 @@ export const fetchUsers = async () => {
   return response.data.users;
 };
 
-export const fetchArticles = async (p, topic) => {
-  const response = await newsApi.get("/articles", { params: { p, topic: topic || "" } });
+export const fetchArticles = async (p, topic, order, sortBy) => {
+  const response = await newsApi.get("/articles", { params: { p, topic, order, sort_by: sortBy } });
   return response.data;
 };
 

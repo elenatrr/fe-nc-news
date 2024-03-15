@@ -38,7 +38,7 @@ const CommentForm = ({ setComments, articleId }) => {
 
     setSubmitStatus(current => ({ ...current, isSubmitting: true }));
 
-    postComment(articleId, loggedInUser.username, text)
+    postComment(articleId, loggedInUser?.username, text)
       .then((newComment) => {
         setSubmitStatus(current => ({ ...current, isSubmitting: false, isSubmitted: true }));
         setComments((currentComments) => [newComment, ...currentComments]);
@@ -54,8 +54,8 @@ const CommentForm = ({ setComments, articleId }) => {
       });
   };
 
-  return (
-    <form onSubmit={handleSubmit} className='comment-form'>
+  return (loggedInUser
+    ? <form onSubmit={handleSubmit} className='comment-form'>
       <label className="comment-form__label" htmlFor="comment">Comment as <span className='comment-form__username'>{loggedInUser?.username}:</span></label>
       <textarea
         className="comment-form__textarea"
@@ -69,7 +69,7 @@ const CommentForm = ({ setComments, articleId }) => {
       ></textarea>
       <button className={submitBtnClass} type='submit'>{submitBtnText}</button>
     </form>
-  );
+    : null);
 };
 
 export default CommentForm;

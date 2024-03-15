@@ -21,27 +21,29 @@ const Header = () => {
           <img className="header__icon" src="https://i.gstatvb.com/881642647dc9c02da0b501199f0509491710200443.rng.svg" alt="NC News Logo" />
         </div>
       </NavLink>
-      <nav className='header__menu'>
-        <NavLink
-          className='header__link'
-          to="/"
-          onClick={() => { logout(); }}
-        >
-          <div className='header__logout'></div>
-        </NavLink>
-        <NavLink className='header__link' to="/post">
-          <div className='header__post'></div>
-        </NavLink>
-        <NavLink className='header__link' to="/profile">
-          <div className="header__avatar">
-            <img
-              className="header__image"
-              src={loggedInUser?.avatar_url}
-              alt="User Avatar"
-            />
-          </div>
-        </NavLink>
-      </nav>
+      {loggedInUser
+        ? <nav className='header__menu'>
+          <NavLink
+            className='header__link'
+            to="/"
+            onClick={() => { logout(); }}
+          >
+            <div className='header__logout'></div>
+          </NavLink>
+          <NavLink className='header__link' to="/post">
+            <div className='header__post'></div>
+          </NavLink>
+          <NavLink className='header__link' to="/profile">
+            <div className="header__avatar">
+              <img
+                className="header__image"
+                src={loggedInUser?.avatar_url}
+                alt="User Avatar"
+              />
+            </div>
+          </NavLink>
+        </nav>
+        : <NavLink className="header__login" to="/">Log In</NavLink>}
     </header>
   );
 };

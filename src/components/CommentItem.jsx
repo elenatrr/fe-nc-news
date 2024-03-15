@@ -8,7 +8,7 @@ const CommentItem = ({ comment }) => {
   const timeAgo = formatDistanceToNow(new Date(comment.created_at), { addSuffix: true });
   const areVotesNegative = comment.votes < 0;
   const { loggedInUser } = useUser();
-  const isAllowedToDelete = comment.author === loggedInUser.username;
+  const isAllowedToDelete = comment.author === loggedInUser?.username;
   const [deleteStatus, setDeleteStatus] = useState({ isDeleting: false, isDeleted: false, isFailed: false });
 
   const handleDelete = () => {

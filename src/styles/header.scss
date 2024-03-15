@@ -19,6 +19,19 @@ $bg-color: #b6cdbd;
     gap: 20px;
   }
 
+  &__login {
+    padding: 12px;
+    border: 2px solid #c84771;
+    border-radius: 12px;
+    background-color: #efeeea;
+    color: #c84771;
+    transition: transform 0.1s;
+
+    &:hover, &.active {
+      transform: scale(1.1);
+    }
+  }
+
   &__link {
     display: inline-block;
     transition: all 0.1s;

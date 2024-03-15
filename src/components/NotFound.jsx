@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import "../styles/not-found.scss"
+import React from "react";
+import { Link } from "react-router-dom";
+import "../styles/not-found.scss";
 
-const NotFound = ({errorMsg}) => {
+const NotFound = ({errorMsg, setIsNonExistentTopic}) => {
   return (
     <div className="error">
       <h2 className="error__title">404 - Not Found</h2>

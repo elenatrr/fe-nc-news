@@ -6,12 +6,14 @@ import Loader from "./Loader";
 import CommentList from "./CommentList";
 import "../styles/article-page.scss";
 import CommentForm from "./CommentForm";
+import NotFound from "./NotFound";
 
 const ArticlePage = () => {
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState([]);
   const [isNonExistentId, setIsNonExistentId] = useState(false);
+  const errorMsg = `Sorry, the selected article "${articleId}" does not exist.`
 
   useEffect(() => {
     setIsNonExistentId(false);
@@ -21,7 +23,7 @@ const ArticlePage = () => {
         setArticle(article);
       }))
       .catch((err) => {
-        if (err.response.status === 404 ) {
+        if (err.response.status === 404) {
           setIsNonExistentId(true);
         }
       });
@@ -30,12 +32,13 @@ const ArticlePage = () => {
   return !article && !isNonExistentId
     ? <Loader />
     : isNonExistentId
-      ? <div className="error-msg">Sorry, the selected article &quot;{articleId}&quot; does not exist.</div>
-      : (
+      ? <NotFound errorMsg={errorMsg}/>
+      :
+       (
         <div className='article-page'>
           <ArticleItem article={article} isArticlePreview={false} />
-          <CommentForm setComments={setComments} articleId={articleId}/>
-          <CommentList comments={comments} setComments={setComments} articleId={articleId} commentCount={article?.comment_count}/>
+          <CommentForm setComments={setComments} articleId={articleId} />
+          <CommentList comments={comments} setComments={setComments} articleId={articleId} commentCount={article?.comment_count} />
         </div>
       );
 };

@@ -20,13 +20,13 @@ const CommentItem = ({ comment }) => {
 
     deleteComment(comment.comment_id)
       .then(() => {
-        setDeleteStatus(current => ({ ...current, isDeleting: false, isDeleted: true}));
+        setDeleteStatus(current => ({ ...current, isDeleting: false, isDeleted: true }));
         setTimeout(() => {
           setDeleteStatus(current => ({ ...current, isDeleted: true }));
         }, 3000);
       })
       .catch(() => {
-        setDeleteStatus(current => ({ ...current, isDeleting: false, isFailed: true}));
+        setDeleteStatus(current => ({ ...current, isDeleting: false, isFailed: true }));
         setTimeout(() => {
           setDeleteStatus(current => ({ ...current, isFailed: false }));
         }, 3000);

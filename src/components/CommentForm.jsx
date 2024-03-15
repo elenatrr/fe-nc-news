@@ -7,7 +7,7 @@ const CommentForm = ({ setComments, articleId }) => {
   const { loggedInUser } = useUser();
   const textareaRef = useRef(null);
   const [text, setText] = useState("");
-  const [submitStatus, setSubmitStatus] = useState({isSubmitting: false, isSubmitted: false, isFailed: false});
+  const [submitStatus, setSubmitStatus] = useState({ isSubmitting: false, isSubmitted: false, isFailed: false });
   let submitBtnClass = "comment-form__btn";
   let submitBtnText = "Submit";
 
@@ -36,7 +36,7 @@ const CommentForm = ({ setComments, articleId }) => {
       return;
     }
 
-    setSubmitStatus(current => ({ ...current, isSubmitting: true}));
+    setSubmitStatus(current => ({ ...current, isSubmitting: true }));
 
     postComment(articleId, loggedInUser.username, text)
       .then((newComment) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchTopics } from "../../api";
 import TopicItem from "./TopicItem";
-import { useNavigate, Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../styles/topic-list.scss";
 
 const TopicList = ({ topicName, areArticlesLoading }) => {
@@ -30,7 +30,7 @@ const TopicList = ({ topicName, areArticlesLoading }) => {
             key={topic.slug}
             to={areArticlesLoading ? "#" : `/articles/${topic.slug}`}
           >
-            <TopicItem topic={topic} topicName={topicName}/>
+            <TopicItem topic={topic} topicName={topicName} />
           </Link>;
         })}
       </div>

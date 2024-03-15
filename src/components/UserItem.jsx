@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/user-item.scss";
 
-const UserItem = ({user, isActive, onClick}) => {
+const UserItem = ({ user, isActive, onClick }) => {
 
   return (
     <div

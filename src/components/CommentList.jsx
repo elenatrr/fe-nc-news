@@ -28,7 +28,7 @@ const CommentList = ({ comments, setComments, articleId, commentCount }) => {
     loadComments();
   }, [pageNumber]);
 
-  return isLoaderShown ? <Loader/> : (
+  return isLoaderShown ? <Loader /> : (
     <div className='comments'>
       <div className='comments__list'>
         <div className='comments__top'>
@@ -39,7 +39,7 @@ const CommentList = ({ comments, setComments, articleId, commentCount }) => {
           return <CommentItem key={comment.comment_id} comment={comment} />;
         })}
       </div>
-      {areCommentsLoading ? <Loader/> : isLoadMoreShown && <button className="comments__btn" onClick={() => { nextPage(); }}>Load More</button>}
+      {areCommentsLoading ? <Loader /> : isLoadMoreShown && <button className="comments__btn" onClick={() => { nextPage(); }}>Load More</button>}
     </div>
   );
 };

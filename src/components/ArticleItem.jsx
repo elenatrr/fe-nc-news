@@ -24,7 +24,7 @@ const ArticleItem = ({ article, isArticlePreview }) => {
         <span className={isArticlePreview ? "article__topic" : "article__topic article__topic_full"}>{article.topic}</span>
         {isArticlePreview
           ? <span className={areVotesNegative ? "article__votes article__votes_negative" : "article__votes"}>{article.votes}</span>
-          : <VoteReactions votes={votes} setVotes={setVotes} areVotesNegative={areVotesNegative} articleId={article.article_id}/>}
+          : <VoteReactions votes={votes} setVotes={setVotes} areVotesNegative={areVotesNegative} articleId={article.article_id} />}
       </div>
       {!isArticlePreview &&
         <div className='article__body'>

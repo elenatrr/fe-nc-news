@@ -5,13 +5,20 @@ import Loader from "./Loader";
 import ArticleItem from "./ArticleItem";
 import "../styles/article-list.scss";
 
-const ArticleList = ({topicName, areArticlesLoading, setAreArticlesLoading, order, sortBy}) => {
-  const [articles, setArticles] = useState([]);
+const ArticleList = ({
+  articles,
+  setArticles,
+  isLoaderShown,
+  topicName,
+  areArticlesLoading,
+  setAreArticlesLoading,
+  order,
+  sortBy
+}) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [isNonExistentTopic, setIsNonExistentTopic] = useState(false);
   const articlesTotalCount = useRef(null);
   const defaultLimit = 10;
-  const isLoaderShown = areArticlesLoading && articles.length === 0;
   const isLoadMoreShown = !isLoaderShown && pageNumber * defaultLimit < articlesTotalCount.current;
 
   const loadMoreArticles = () => {
@@ -38,7 +45,7 @@ const ArticleList = ({topicName, areArticlesLoading, setAreArticlesLoading, orde
     }
   };
 
-  useEffect( () => {
+  useEffect(() => {
     setPageNumber(1);
     fetchAndSetArticles(true);
   }, [topicName, order, sortBy]);
@@ -53,7 +60,7 @@ const ArticleList = ({topicName, areArticlesLoading, setAreArticlesLoading, orde
     ? <Loader />
     : isNonExistentTopic
       ? <div className="error-msg">Sorry, the selected topic &quot;{topicName}&quot; does not exist. Please choose one from the list above!</div>
-      :(
+      : (
         <div className='articles'>
           <div className='articles__list'>
             {articles.map((article) => {
@@ -68,7 +75,7 @@ const ArticleList = ({topicName, areArticlesLoading, setAreArticlesLoading, orde
               );
             })}
           </div>
-          {areArticlesLoading ? <Loader/> : isLoadMoreShown && <button className="articles__btn" onClick={() => { loadMoreArticles(); }}>Load More</button>}
+          {areArticlesLoading ? <Loader /> : isLoadMoreShown && <button className="articles__btn" onClick={() => { loadMoreArticles(); }}>Load More</button>}
         </div>
       );
 };

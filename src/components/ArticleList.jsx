@@ -12,11 +12,11 @@ const ArticleList = ({
   topicName,
   areArticlesLoading,
   setAreArticlesLoading,
+  setIsNonExistentTopic,
   order,
   sortBy
 }) => {
   const [pageNumber, setPageNumber] = useState(1);
-  const [isNonExistentTopic, setIsNonExistentTopic] = useState(false);
   const articlesTotalCount = useRef(null);
   const defaultLimit = 10;
   const isLoadMoreShown = !isLoaderShown && pageNumber * defaultLimit < articlesTotalCount.current;
@@ -58,8 +58,6 @@ const ArticleList = ({
 
   return isLoaderShown
     ? <Loader />
-    : isNonExistentTopic
-      ? <div className="error-msg">Sorry, the selected topic &quot;{topicName}&quot; does not exist. Please choose one from the list above!</div>
       : (
         <div className='articles'>
           <div className='articles__list'>

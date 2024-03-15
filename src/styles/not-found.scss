@@ -1,0 +1,28 @@
+@import "./common.scss";
+
+.error {
+  font-size: 20px;
+  text-align: center;
+
+  &__title {
+    margin-bottom: 12px;
+  }
+
+  &__msg {
+    margin-bottom: 32px;
+  }
+
+  &__btn {
+    font-size: 16px;
+    background-color: #c84771;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #b61a50;
+    }
+  }
+}

@@ -16,14 +16,16 @@ function App() {
     <UserProvider>
       <div className="app">
         {!isLocationHomepage && <Header />}
-        <Routes>
-          <Route path="/" element={<WelcomePage />} />
-          <Route path="/articles" element={<ArticlesPage />} />
-          <Route path="/articles/:topicName" element={<ArticlesPage />} />
-          <Route path="/article/:articleId" element={<ArticlePage />} />
-          <Route path="/profile" element={<UserProfilePage />} />
-          <Route path="/post" element={<PostArticlePage />} />
-        </Routes>
+        <main className="wrapper">
+          <Routes>
+            <Route path="/" element={<WelcomePage />} />
+            <Route path="/articles" element={<ArticlesPage />} />
+            <Route path="/articles/:topicName" element={<ArticlesPage />} />
+            <Route path="/article/:articleId" element={<ArticlePage />} />
+            <Route path="/profile" element={<UserProfilePage />} />
+            <Route path="/post" element={<PostArticlePage />} />
+          </Routes>
+        </main>
       </div>
     </UserProvider>
   );

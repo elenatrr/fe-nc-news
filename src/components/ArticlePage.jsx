@@ -30,7 +30,7 @@ const ArticlePage = () => {
   return !article && !isNonExistentId
     ? <Loader />
     : isNonExistentId
-      ? <div className="wrapper">Sorry, the selected article &quot;{articleId}&quot; does not exist.</div>
+      ? <div className="error-msg">Sorry, the selected article &quot;{articleId}&quot; does not exist.</div>
       : (
         <div className='article-page'>
           <ArticleItem article={article} isArticlePreview={false} />

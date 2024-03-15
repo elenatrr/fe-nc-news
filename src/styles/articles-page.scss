@@ -1,0 +1,17 @@
+@import "./common.scss";
+
+.articles-page {
+  @include flex-centered;
+  flex-direction: column;
+
+  &__top {
+    align-self: flex-start;
+    margin: 0 0 20px 12px;
+  }
+
+  &__sort {
+    @include flex-centered($justify-content: flex-start, $align-items: flex-end);
+    width: 100%;
+    gap: 20px;
+  }
+}

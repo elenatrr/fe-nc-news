@@ -1,0 +1,23 @@
+@import "./common.scss";
+
+.order {
+  display: block;
+  text-align: center;
+  box-shadow: 0 3px 3px #AFADA7;
+  border-radius: 12px;
+  border: none;
+  width: 44px;
+  height: 44px;
+
+  &:active {
+    box-shadow: 0 1px 1px #AFADA7;
+  }
+
+  &_asc {
+    background: center/32px no-repeat url('https://i.gstatvb.com/4284c026900b6299a8446461afa5eab01710495221.rng.png');
+  }
+
+  &_desc {
+    background: center/32px no-repeat url('https://i.gstatvb.com/4771288e870ccf6942926ca77291146f1710495258.rng.png');
+  }
+}

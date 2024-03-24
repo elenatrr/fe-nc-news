@@ -3,15 +3,15 @@ import "../styles/sort-articles.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const SortArticles = ({ sortBy, setSortBy }) => {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(()=>{
-    const searchParams = new URLSearchParams(location.search)
+    const searchParams = new URLSearchParams(location.search);
 
-    searchParams.set("sortBy", sortBy)
-    navigate(`${location.pathname}?${searchParams.toString()}`)
-  }, [sortBy, navigate, location.pathname])
+    searchParams.set("sortBy", sortBy);
+    navigate(`${location.pathname}?${searchParams.toString()}`);
+  }, [sortBy, navigate, location.pathname]);
 
   return (
     <ul className='sort'>

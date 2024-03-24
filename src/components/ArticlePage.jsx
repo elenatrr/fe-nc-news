@@ -26,7 +26,7 @@ const ArticlePage = () => {
         if (err.response?.status === 404) {
           setIsNonExistentId(true);
         } else if (err.response?.status === 400) {
-          setIsBadRequest(true)
+          setIsBadRequest(true);
         }
       });
   }, []);

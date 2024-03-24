@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ArticleList from "./ArticleList";
 import TopicList from "./TopicList";
 import { useLocation, useParams } from "react-router-dom";
@@ -9,11 +9,11 @@ import ErrorPage from "./ErrorPage";
 import ScrollUpBtn from "./ScrollUpBtn";
 
 const ArticlesPage = () => {
-  const { topicName } = useParams()
+  const { topicName } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const initialOrder = searchParams.get("order") || "desc"
-  const initialSortBy = searchParams.get("sortBy") || "created_at"
+  const initialOrder = searchParams.get("order") || "desc";
+  const initialSortBy = searchParams.get("sortBy") || "created_at";
   const [areArticlesLoading, setAreArticlesLoading] = useState(false);
   const [order, setOrder] = useState(initialOrder);
   const [sortBy, setSortBy] = useState(initialSortBy);

@@ -41,7 +41,7 @@ const ArticleList = ({
       if (error.response?.status === 404) {
         setIsNonExistentTopic(true);
       } else if (error.response?.status === 400) {
-        setIsBadRequest(true)
+        setIsBadRequest(true);
       }
     } finally {
       setAreArticlesLoading(false);

@@ -7,7 +7,7 @@ import PostArticlePage from "./components/PostArticlePage";
 import Header from "./components/Header";
 import ArticlePage from "./components/ArticlePage";
 import "./styles/app.scss";
-import NotFound from "./components/NotFound";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   const location = useLocation();
@@ -25,7 +25,7 @@ function App() {
             <Route path="/article/:articleId" element={<ArticlePage />} />
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/post" element={<PostArticlePage />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<ErrorPage isNotFound={true}/>} />
           </Routes>
         </main>
       </div>

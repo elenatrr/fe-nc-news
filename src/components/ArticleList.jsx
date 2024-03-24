@@ -13,6 +13,7 @@ const ArticleList = ({
   areArticlesLoading,
   setAreArticlesLoading,
   setIsNonExistentTopic,
+  setIsBadRequest,
   order,
   sortBy
 }) => {
@@ -39,6 +40,8 @@ const ArticleList = ({
     } catch (error) {
       if (error.response?.status === 404) {
         setIsNonExistentTopic(true);
+      } else if (error.response?.status === 400) {
+        setIsBadRequest(true)
       }
     } finally {
       setAreArticlesLoading(false);

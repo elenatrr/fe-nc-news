@@ -3,12 +3,12 @@ import "../styles/order-articles.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const OrderArticles = ({ order, setOrder }) => {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleOrderChange = () => {
     const newOrder = order === "asc" ? "desc" : "asc";
-    setOrder(newOrder)
+    setOrder(newOrder);
   };
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const OrderArticles = ({ order, setOrder }) => {
 
     searchParams.set("order", order);
     navigate(`${location.pathname}?${searchParams.toString()}`);
-  }, [order, navigate, location.pathname])
+  }, [order, navigate, location.pathname]);
 
   return (
     <button className={order === "asc" ? "order order_asc" : "order order_desc"} onClick={handleOrderChange}></button>

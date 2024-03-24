@@ -3,6 +3,7 @@ import { fetchComments } from "../../api";
 import CommentItem from "./CommentItem";
 import Loader from "./Loader";
 import "../styles/comment-list.scss";
+import ScrollUpBtn from "./ScrollUpBtn";
 
 const CommentList = ({ comments, setComments, articleId, commentCount }) => {
   const [areCommentsLoading, setAreCommentsLoading] = useState(true);
@@ -40,6 +41,7 @@ const CommentList = ({ comments, setComments, articleId, commentCount }) => {
         })}
       </div>
       {areCommentsLoading ? <Loader /> : isLoadMoreShown && <button className="comments__btn" onClick={() => { nextPage(); }}>Load More</button>}
+      <ScrollUpBtn/>
     </div>
   );
 };

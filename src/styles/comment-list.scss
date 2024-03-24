@@ -1,6 +1,7 @@
 @import "./common.scss";
 
 .comments {
+  position: relative;
 
   &__list {
     margin-bottom: 20px;
@@ -36,6 +37,24 @@
 
     &:hover {
       background-color: #b61a50;
+    }
+  }
+
+  &__up {
+    position: fixed;
+    bottom: 20px;
+    right: 36px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: #5c715e;
+    font-size: 28px;
+    background-color: rgba(220, 233, 221, 0.8);
+    box-shadow: 3px 5px 10px -4px rgba(87,87,87,1);
+    border: 2px solid #5c715e;
+
+    &:hover {
+      background-color: #f2f9f1;
     }
   }
 }

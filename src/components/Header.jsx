@@ -15,7 +15,8 @@ const Header = () => {
       <NavLink
         className='header__link'
         to="/articles"
-        onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); }} exact="true"
+        exact="true"
+        reloadDocument
       >
         <div className='header__logo'>
           <img className="header__icon" src="https://i.gstatvb.com/881642647dc9c02da0b501199f0509491710200443.rng.svg" alt="NC News Logo" />

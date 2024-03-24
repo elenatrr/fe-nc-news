@@ -3,6 +3,7 @@
 .articles-page {
   @include flex-centered;
   flex-direction: column;
+  position: relative;
 
   &__top {
     align-self: flex-start;

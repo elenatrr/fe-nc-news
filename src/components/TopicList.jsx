@@ -4,9 +4,12 @@ import TopicItem from "./TopicItem";
 import { useNavigate, Link } from "react-router-dom";
 import "../styles/topic-list.scss";
 
-const TopicList = ({ topicName, areArticlesLoading }) => {
+const TopicList = ({ topicName, areArticlesLoading, order, sortBy }) => {
   const [topics, setTopics] = useState(null);
   const navigate = useNavigate();
+  const searchParams = new URLSearchParams(location.search);
+  searchParams.set("order", order);
+  searchParams.set("sortBy", sortBy);
   const handleClick = () => {
     navigate("/articles");
   };
@@ -28,7 +31,7 @@ const TopicList = ({ topicName, areArticlesLoading }) => {
           return <Link
             className="topics__link"
             key={topic.slug}
-            to={areArticlesLoading ? "#" : `/articles/${topic.slug}`}
+            to={areArticlesLoading ? "#" : `/articles/${topic.slug}?${searchParams.toString()}`}
           >
             <TopicItem topic={topic} topicName={topicName} />
           </Link>;

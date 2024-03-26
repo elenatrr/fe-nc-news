@@ -1,0 +1,72 @@
+@import "./common.scss";
+
+.post-article {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  &__field {
+    display: block;
+    width: 100%;
+    background-color: rgba(224, 221, 215, 0.337254902);
+    border-radius: 12px;
+    border: 2px solid #e0ddd7;
+    padding: 16px;
+    margin-bottom: 20px;
+
+    &:focus {
+      border: 2px solid #c84771;
+      outline: none;
+    }
+
+    &::placeholder {
+      font-style: italic;
+    }
+
+    &_textarea {
+      resize: none;
+      height: 200px;
+    }
+  }
+
+  &__topics {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  &__tag {
+    cursor: pointer;
+    color: #5c715e;
+    position: relative;
+    padding: 12px;
+    border: 2px solid rgb(224, 221, 215, 0.3);
+    background-color: rgba(224, 221, 215, 0.3);
+    border-radius: 12px;
+    text-align: center;
+  
+    &:hover {
+      background-color: #ddeedf;
+    }
+
+    &:has(> input:checked) {
+      background-color: #ddeedf;
+      border: 2px solid #5c715e;
+    }
+  }
+
+  &__topic {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}

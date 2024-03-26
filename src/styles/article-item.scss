@@ -46,7 +46,7 @@
   }
 
   &__bottom {
-    @include flex-centered($justify-content: space-between, $align-items: stretch);
+    @include flex-centered($justify-content: space-between, $align-items: center);
   }
 
   &__votes {

@@ -1,0 +1,36 @@
+@import "./common.scss";
+
+.submit-button {
+  cursor: default;
+  align-self: flex-end;
+  display: inline-block;
+  border: none;
+  background-color: #c84772c0;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 12px 16px;
+  border-radius: 12px;
+  transition: all 0.3s;
+  pointer-events: none;
+
+  &_active {
+    cursor: pointer;
+    background-color: #c84771;
+    color: #fff;
+    pointer-events: auto;
+
+    &:hover {
+      background-color: #b61a50;
+    }
+  }
+
+  &_submitted {
+    background-color: #b6cdbd;
+    color: #5c715e;
+  }
+
+  &_failed {
+    background-color: rgba(255, 183, 199, 0.7);
+    color: #b61a50;
+  }
+}

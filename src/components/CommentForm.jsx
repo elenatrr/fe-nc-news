@@ -2,26 +2,14 @@ import React, { useRef, useState } from "react";
 import { useUser } from "../contexts/UserContext";
 import "../styles/comment-form.scss";
 import { postComment } from "../../api";
+import SubmitButton from "./SubmitButton";
 
 const CommentForm = ({ setComments, articleId }) => {
   const { loggedInUser } = useUser();
   const textareaRef = useRef(null);
   const [text, setText] = useState("");
   const [submitStatus, setSubmitStatus] = useState({ isSubmitting: false, isSubmitted: false, isFailed: false });
-  let submitBtnClass = "comment-form__btn";
-  let submitBtnText = "Submit";
-
-  if (submitStatus.isSubmitting) {
-    submitBtnText = "Submitting...";
-  } else if (submitStatus.isSubmitted) {
-    submitBtnClass += " comment-form__btn_submitted";
-    submitBtnText = "Submitted ✔";
-  } else if (submitStatus.isFailed) {
-    submitBtnClass += " comment-form__btn_failed";
-    submitBtnText = "Failed to submit";
-  } else if (text) {
-    submitBtnClass += " comment-form__btn_active";
-  }
+  const isSubmitActive = Boolean(text);
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -67,7 +55,7 @@ const CommentForm = ({ setComments, articleId }) => {
         placeholder='What are your thoughts?'
         onChange={handleChange}
       ></textarea>
-      <button className={submitBtnClass} type='submit'>{submitBtnText}</button>
+      <SubmitButton submitStatus={submitStatus} isActive={isSubmitActive}/>
     </form>
     : null);
 };

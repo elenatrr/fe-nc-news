@@ -47,3 +47,14 @@ export const fetchTopics = async () => {
   const response = await newsApi.get("/topics");
   return response.data.topics;
 };
+
+export const postArticle = async (title, topic, author, body, article_img_url) => {
+  const response = await newsApi.post("/articles", {
+    title,
+    topic,
+    author,
+    body,
+    article_img_url
+  });
+  return response.data.article;
+};

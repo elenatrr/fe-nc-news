@@ -36,6 +36,7 @@
 
   &__topics {
     display: flex;
+    flex-direction: row-reverse;
     gap: 12px;
     margin-bottom: 20px;
   }
@@ -68,5 +69,9 @@
     bottom: 0;
     left: 0;
     right: 0;
+  }
+
+  &__btn-container {
+    text-align: right;
   }
 }

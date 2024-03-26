@@ -103,7 +103,9 @@ const PostArticlePage = () => {
           maxLength="1400"
           required
         />
-        <SubmitButton submitStatus={submitStatus} isActive={isSubmitActive}/>
+        <div className="post-article__btn-container">
+          <SubmitButton submitStatus={submitStatus} isActive={isSubmitActive}/>
+        </div>
       </form>
     </div>
   );

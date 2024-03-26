@@ -1,0 +1,22 @@
+@import "./common.scss";
+
+.user-profile {
+  text-align: center;
+  font-size: 20px;
+
+  &__img {
+    width: 100px;
+    object-fit: cover;
+    border: 2px solid #5c715e;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    margin-bottom: 4px;
+
+    &_blue {
+      color: #668ba4;
+    }
+  }
+}

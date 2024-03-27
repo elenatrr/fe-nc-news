@@ -5,6 +5,7 @@
   align-items: stretch;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  padding-right: 2px;
   max-width: 174px;
 }
 
@@ -43,6 +44,7 @@
 
 @media #{$tablet-media-query} {
   .users {
+    padding-right: 0;
     max-width: 516px;
   }
 }

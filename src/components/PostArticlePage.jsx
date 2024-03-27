@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/post-article.scss";
-import { fetchTopics, postArticle } from "../../api";
+import { postArticle } from "../../api";
 import { useUser } from "../contexts/UserContext";
 import SubmitButton from "./SubmitButton";
+import Loader from "./Loader";
 
-const PostArticlePage = () => {
-  const [topics, setTopics] = useState([]);
+const PostArticlePage = ({topics}) => {
   const [articleTitle, setArticleTitle] = useState("");
   const [articleTopic, setArticleTopic] = useState("");
   const [articleBody, setArticleBody] = useState("");
@@ -44,13 +44,6 @@ const PostArticlePage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchTopics()
-      .then((topics) => {
-        setTopics(topics);
-      });
-  }, []);
-
   return (
     <div className="post-article">
       <h2 className="post-article__title">Create a New Article</h2>
@@ -75,6 +68,16 @@ const PostArticlePage = () => {
           maxLength={200}
           required
         />
+        <textarea
+          value={articleBody}
+          onChange={(e) => setArticleBody(e.target.value)}
+          className="post-article__field post-article__field_textarea"
+          placeholder="What would you like to write about?"
+          id="base-input"
+          type="text"
+          maxLength="1400"
+          required
+        />
         <div className="post-article__topics">
           {topics ? topics.map((topic) => {
             return (
@@ -91,18 +94,8 @@ const PostArticlePage = () => {
                 <label htmlFor={topic.slug}>#{topic.slug}</label>
               </div>
             );
-          }) : null}
+          }) : <Loader/>}
         </div>
-        <textarea
-          value={articleBody}
-          onChange={(e) => setArticleBody(e.target.value)}
-          className="post-article__field post-article__field_textarea"
-          placeholder="What would you like to write about?"
-          id="base-input"
-          type="text"
-          maxLength="1400"
-          required
-        />
         <div className="post-article__btn-container">
           <SubmitButton submitStatus={submitStatus} isActive={isSubmitActive}/>
         </div>

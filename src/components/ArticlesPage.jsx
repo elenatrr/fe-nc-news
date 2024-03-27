@@ -8,7 +8,7 @@ import "../styles/articles-page.scss";
 import ErrorPage from "./ErrorPage";
 import ScrollUpBtn from "./ScrollUpBtn";
 
-const ArticlesPage = () => {
+const ArticlesPage = ({topics, setTopics}) => {
   const { topicName } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -26,7 +26,14 @@ const ArticlesPage = () => {
     ? <ErrorPage isNotFound={isNonExistentTopic} />
     : <div className='articles-page'>
       <div className="articles-page__top">
-        <TopicList topicName={topicName || null} areArticlesLoading={areArticlesLoading} order={order} sortBy={sortBy} />
+        <TopicList
+          topics={topics}
+          setTopics={setTopics}
+          topicName={topicName || null}
+          areArticlesLoading={areArticlesLoading}
+          order={order}
+          sortBy={sortBy}
+        />
         {!isLoaderShown && <div className="articles-page__sort">
           <OrderArticles areArticlesLoading={areArticlesLoading} order={order} setOrder={setOrder} />
           <SortArticles areArticlesLoading={areArticlesLoading} sortBy={sortBy} setSortBy={setSortBy} />

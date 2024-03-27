@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { fetchTopics } from "../../api";
 import TopicItem from "./TopicItem";
 import { useNavigate, Link } from "react-router-dom";
 import "../styles/topic-list.scss";
 
-const TopicList = ({ topicName, areArticlesLoading, order, sortBy }) => {
-  const [topics, setTopics] = useState(null);
+const TopicList = ({
+  topics,
+  setTopics,
+  topicName,
+  areArticlesLoading,
+  order,
+  sortBy
+}) => {
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   searchParams.set("order", order);

@@ -8,10 +8,12 @@ import Header from "./components/Header";
 import ArticlePage from "./components/ArticlePage";
 import "./styles/app.scss";
 import ErrorPage from "./components/ErrorPage";
+import { useState } from "react";
 
 function App() {
   const location = useLocation();
   const isLocationHomepage = location.pathname === "/";
+  const [topics, setTopics] = useState(null);
 
   return (
     <UserProvider>
@@ -20,11 +22,11 @@ function App() {
         <main className="wrapper">
           <Routes>
             <Route path="/" element={<WelcomePage />} />
-            <Route path="/articles" element={<ArticlesPage />} />
-            <Route path="/articles/:topicName" element={<ArticlesPage />} />
-            <Route path="/article/:articleId" element={<ArticlePage />} />
+            <Route path="/articles" element={<ArticlesPage topics={topics} setTopics={setTopics}/>} />
+            <Route path="/articles/:topicName" element={<ArticlesPage topics={topics} setTopics={setTopics}/>} />
+            <Route path="/article/:articleId" element={<ArticlePage topics={topics} setTopics={setTopics}/>} />
             <Route path="/profile" element={<UserProfilePage />} />
-            <Route path="/post" element={<PostArticlePage />} />
+            <Route path="/post" element={<PostArticlePage topics={topics}/>} />
             <Route path="*" element={<ErrorPage isNotFound={true}/>} />
           </Routes>
         </main>
